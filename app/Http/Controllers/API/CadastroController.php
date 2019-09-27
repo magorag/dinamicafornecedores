@@ -30,6 +30,11 @@ class CadastroController extends Controller
         ]);
         $ajustandoPassword = str_replace('/', 'e', $gerandoHash);
         $hash->hash = $ajustandoPassword;
+
+        $ajustandoPasswordPonto = str_replace('.', 'p', $hash);
+        
+        $hash->hash = $ajustandoPasswordPonto;
+
         $hash->save();
 
         return response()->json(array('success' => true, 'last_insert_hash' => $hash->hash), 200);
