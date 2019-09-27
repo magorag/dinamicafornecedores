@@ -29,10 +29,8 @@ class CadastroController extends Controller
             'rounds' => 12
         ]);
         $ajustandoPassword = str_replace('/', 'e', $gerandoHash);
-        $hash->hash = $ajustandoPassword;
+        $ajustandoPasswordPonto = str_replace('.', 'p', $ajustandoPassword);
 
-        $ajustandoPasswordPonto = str_replace('.', 'p', $hash);
-        
         $hash->hash = $ajustandoPasswordPonto;
 
         $hash->save();
