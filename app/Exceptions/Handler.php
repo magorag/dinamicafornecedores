@@ -2,8 +2,8 @@
 
 namespace App\Exceptions;
 
-use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -29,10 +29,12 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Throwable  $exception
      * @return void
+     *
+     * @throws \Exception
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
         parent::report($exception);
     }
@@ -41,28 +43,13 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  \Throwable  $exception
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
-        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
-            if ($request->expectsJson())            
-                return response()->json(['error' => 'Not_found_URI'], $exception->getStatusCode());
-        }
-
-        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
-            if ($request->expectsJson())            
-                return response()->json(['error' => 'Method_Not_Allowed'], $exception->getStatusCode());
-        }
-
-        if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException)
-            return response()->json(['token_expired'], $exception->getStatusCode());
-
-        if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException)
-            return response()->json(['token_invalid'], $exception->getStatusCode());
-
-
         return parent::render($request, $exception);
     }
 }

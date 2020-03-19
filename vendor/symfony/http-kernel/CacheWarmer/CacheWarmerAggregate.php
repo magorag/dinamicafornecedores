@@ -45,10 +45,8 @@ class CacheWarmerAggregate implements CacheWarmerInterface
 
     /**
      * Warms up the cache.
-     *
-     * @param string $cacheDir The cache directory
      */
-    public function warmUp($cacheDir)
+    public function warmUp(string $cacheDir)
     {
         if ($collectDeprecations = $this->debug && !\defined('PHPUNIT_COMPOSER_INSTALL')) {
             $collectedLogs = [];
@@ -115,7 +113,7 @@ class CacheWarmerAggregate implements CacheWarmerInterface
      *
      * @return bool always false
      */
-    public function isOptional()
+    public function isOptional(): bool
     {
         return false;
     }

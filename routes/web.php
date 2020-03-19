@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,11 +12,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-//Route::get('cadastro', 'API\CadastroController@index');
-//Route::post('cadastro', 'API\CadastroController@store');
-//Route::get('valorGerado', 'API\CadastroController@valor');
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');
+//Route::put('updateuser/{id}', 'ApiControllers\UserController@update');
